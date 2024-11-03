@@ -1,11 +1,14 @@
-import java.util.concurrent.*;;
+import java.util.concurrent.*;
 
 public class Escalonador {
     public static void main(String[] args) {
-        int poolSize = 2;
+        ArquivoEntrada arquivoEntrada = new ArquivoEntrada();
+        arquivoEntrada.escreverConteudo();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(poolSize);
+        ExecutorService executorService = Executors.newFixedThreadPool(arquivoEntrada.getProcessos().size());
 
-        executorService.execute(new ThreadPrio("MyThread"));
+        arquivoEntrada.getProcessos().forEach(processo ->{
+            executorService.execute(new ThreadPrio(String.format("THREAD-%d",processo.pid)));
+        });
     }
 }
