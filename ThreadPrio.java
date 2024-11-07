@@ -1,17 +1,19 @@
 public class ThreadPrio implements Runnable{
     private String threadName;
+    private CPU cpu;
 
-    public ThreadPrio(String threadName)
+    public ThreadPrio(String threadName, CPU cpu)
     {
         this.threadName = threadName;
+        this.cpu = cpu;
     }
 
     @Override
-    public void run()
+    public synchronized void run()
     {
         System.out.println(this.threadName + " começou...");
         try {
-            Thread.sleep(5000);
+            cpu.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
