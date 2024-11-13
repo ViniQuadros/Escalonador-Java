@@ -41,7 +41,7 @@ public class ArquivoEntrada {
         protected int burst;
         protected int prioridade;
 
-        public Processo(String linhaArquivoEntrada) {
+        private Processo(String linhaArquivoEntrada) {
             String[] linhaRepartida = linhaArquivoEntrada.split(";");
 
             this.pid = Integer.parseInt(linhaRepartida[0]);
