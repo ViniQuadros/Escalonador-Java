@@ -13,10 +13,11 @@ public class ArquivoEntrada {
     }
 
     public void escreverConteudo() {
+        System.out.println("CONTEÚDO DO ARQUIVO DE ENTRADA:\n");
         processos.forEach(processo -> System.out.println(processo.toString()));
     }
 
-    public List<ArquivoEntrada.Processo> getProcessos(){
+    public List<ArquivoEntrada.Processo> getProcessos() {
         return processos;
     }
 
@@ -36,10 +37,13 @@ public class ArquivoEntrada {
     }
 
     public class Processo {
-        protected int pid;
-        protected int tempoChegada;
-        protected int burst;
-        protected int prioridade;
+        private int pid;
+        private int tempoChegada;
+        private int tempoExecutado;
+        private int burst;
+        private int prioridade;
+        private int tempoEspera;
+        private int tempoEmQueFoiParado;
 
         private Processo(String linhaArquivoEntrada) {
             String[] linhaRepartida = linhaArquivoEntrada.split(";");
@@ -48,12 +52,54 @@ public class ArquivoEntrada {
             this.tempoChegada = Integer.parseInt(linhaRepartida[1]);
             this.burst = Integer.parseInt(linhaRepartida[2]);
             this.prioridade = Integer.parseInt(linhaRepartida[3]);
+
+            this.tempoEspera = 0;
         }
 
         @Override
         public String toString() {
             return String.format("PID=%d|TEMPO DE CHEGADA=%d|BURST=%s|PRIORIDADE=%d", pid, tempoChegada, burst,
                     prioridade);
+        }
+
+        public int getTempoChegada() {
+            return tempoChegada;
+        }
+
+        public int getTempoExecutado() {
+            return tempoExecutado;
+        }
+
+        public void setTempoEspera(int tempoEspera) {
+            this.tempoEspera = tempoEspera;
+        }
+
+        public int getTempoEmQueFoiParado() {
+            return tempoExecutado;
+        }
+
+        public void setTeEmQueFoiParado(int tempoEmQueFoiParado) {
+            this.tempoEmQueFoiParado = tempoEmQueFoiParado;
+        }
+
+        public int getTempoEspera() {
+            return tempoEspera;
+        }
+
+        public int getPid() {
+            return pid;
+        }
+
+        public int getBurst() {
+            return burst;
+        }
+
+        public int getPrioridade() {
+            return prioridade;
+        }
+
+        public void setTempoExecutado(int tempoExecutado) {
+            this.tempoExecutado = tempoExecutado;
         }
     }
 
