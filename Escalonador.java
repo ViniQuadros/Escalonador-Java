@@ -26,7 +26,7 @@ public class Escalonador {
     private static void calcularTME(List<ArquivoEntrada.Processo> processos) {
         System.out.println("\nTEMPOS DE ESPERA:\n");
         processos.forEach(processo -> System.out.println(String.format("PID=%d,TEMPO_ESPERA=%d", processo.getPid(),processo.getTempoEspera())));
-        float tme = processos.stream().map(processo -> processo.getTempoEspera()).reduce(0, Integer::sum)/processos.size();
+        float tme = processos.stream().map(processo -> processo.getTempoEspera()).reduce(0, Integer::sum)/(float)processos.size();
         System.out.println("TME = " + tme);
     }
 
